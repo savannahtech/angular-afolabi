@@ -1,0 +1,64 @@
+<mat-toolbar color="" class="header">
+  <button
+    type="button"
+    aria-label="Toggle sidenav"
+    mat-icon-button
+    (click)="drawer.toggle()"
+    *ngIf="isHandset$ | async">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span><img class="p-4" src="assets/img/logo.svg" alt=""></span>
+  <div class="input-group mb-3 w-25 pt-3 ms-5 ps-5" *ngIf="!(isHandset$ | async)">
+    <input type="text" class="form-control" placeholder="Search for everything" aria-label="Search for everything" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><mat-icon class="pt-1">search</mat-icon></button>
+  </div>
+  <div class="">
+    <span *ngIf="!(isHandset$ | async)" class=""><u>Docs</u></span>
+    <span *ngIf="!(isHandset$ | async)"><mat-icon class="material-icons-outlined p-1">notifications</mat-icon></span>
+    <span><img class="profile-pic p-2 m-3 rounded-circle" src="assets/img/83.jpg" alt=""></span>
+    <span *ngIf="!(isHandset$ | async)"class="fw-bold m-1">Adedeji</span>
+    <span><mat-icon class="pt-1">arrow_drop_down</mat-icon></span>
+  </div>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar><mat-icon class="me-3 material-icons-outlined">work</mat-icon>Switch Organization <mat-icon class="pt-1 ms-3">expand_more</mat-icon></mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item class="mb-1" routerLinkActive="active-list-item" routerLink="/landing/dashboard"><mat-icon class="me-3 material-icons-outlined pt-1">home</mat-icon>Dashboard</a>
+    </mat-nav-list>
+    <p class="ps-3 mb-0">CUSTOMERS</p>
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active-list-item" class="mb-1" routerLink="/landing/users"><mat-icon class="me-3 material-icons-outlined pt-1">group</mat-icon>Users</a>
+      <a mat-list-item routerLinkActive="active-list-item" class="" routerLink="/landing/guarantors"><mat-icon class="me-3 material-icons-outlined pt-1">groups</mat-icon>Guarantors</a>
+      <a mat-list-item routerLinkActive="active-list-item" routerLink="/landing/loans"><mat-icon class="me-3 material-icons-outlined pt-1">payments</mat-icon>Loans</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item" routerLink="/landing/decision-models"><mat-icon class="me-3 material-icons-outlined pt-1">handshake</mat-icon>Decision Models</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">payments</mat-icon>Loan Requests</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">person_add</mat-icon>White List</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">person_remove</mat-icon>Karma</a>
+    </mat-nav-list>
+    <p class="ps-3 mb-0">BUSINESSES</p>
+    <mat-nav-list>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">work</mat-icon>Organization</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item" ><mat-icon class="me-3 material-icons-outlined pt-1">display_settings</mat-icon>Transactions</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">account_balance_wallet</mat-icon>Savings Products</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">price_change</mat-icon>Fees and Charges</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">settings_suggest</mat-icon>Services</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">account_tree</mat-icon>Service Account</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">receipt_long</mat-icon>Settlements</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">summarize</mat-icon>Reports</a>
+    </mat-nav-list>
+    <p class="ps-3 mb-0">SETTINGS</p>
+
+    <mat-nav-list>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">tune</mat-icon>Preferences</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">sell</mat-icon>Fees and Pricing</a>
+      <a mat-list-item disabled routerLinkActive="active-list-item"><mat-icon class="me-3 material-icons-outlined pt-1">input</mat-icon>Audit Logs</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

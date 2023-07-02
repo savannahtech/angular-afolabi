@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <img width="280px" class="pt-5 mt-5 ms-n5" src="assets/img/logo.svg" alt="">
+    </div>
+  </div>
+  <div class="row logo">
+    <div class="col-md-6 d-none d-lg-block">
+      <div class="">
+        <img src="assets/img/pablo-sign-in.svg" alt="">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2 class="fw-bold mat-h2">Welcome!</h2>
+      <p class="details mb-5">Enter <span class="text-danger">any</span> email and password to login</p>
+      <div class="form">
+        <form [formGroup]="form" (ngSubmit)="submit();">
+          <div class="form-floating mb-3">
+            <input formControlName="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email</label>
+            <div class="is-valid" *ngIf="isSubmitted">
+              <div *ngIf="fc['email'].errors?.['required']" style="color: red">
+                Email is required
+              </div>
+              <div *ngIf="fc['email'].errors?.['email']" style="color: red">
+                Email is incorrect
+              </div>
+            </div>
+          </div>
+          <div class="form-floating input-group">
+            <input formControlName="password" style="border-right: none" [type]="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <button (click)="showPassword()" class="btn btn-outline-secondary" style="border: 1px solid #ced4da; border-left: none;" type="button" id="button-addon2">{{ show ? 'HIDE': 'SHOW'}}</button>
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div *ngIf="isSubmitted">
+            <div *ngIf="fc['password'].errors?.['required']" style="color: red">
+              Password is required
+            </div>
+            <div *ngIf="fc['password'].errors?.['minlength']" style="color: red">
+              Password is should not be less than 8 characters
+            </div>
+          </div>
+          <p role="button" class="my-4">FORGOT PASSWORD?</p>
+
+          <button class="p-3 btn btn-primary w-100">LOG IN</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

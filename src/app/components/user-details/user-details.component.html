@@ -1,0 +1,198 @@
+<div class="container pt-5">
+
+  <p role="button" routerLink="/landing/users">
+    <mat-icon class="pt-2">keyboard_backspace</mat-icon>&nbsp;Back to Users
+  </p>
+  <div class="d-flex justify-content-between">
+    <h4 class="mat-h2 fw-bold">User Details</h4>
+    <div>
+      <button class="me-3" mat-stroked-button color="warn">BLACKLIST USER</button>
+      <button mat-stroked-button color="primary">ACTIVATE USER</button>
+    </div>
+  </div>
+<div *ngIf="(user$ | async) as user">
+  <div class="row details shadow-sm">
+    <div class="col-md-4">
+      <div class="persona">
+        <img *ngIf="!user?.profile?.avatar" src="assets/img/avatar.svg" class="me-3" alt="">
+        <img *ngIf="user?.profile?.avatar" [src]="user?.profile?.avatar" class="me-3" alt="">
+        <div>
+          <p class="names">
+            {{user?.profile?.firstName | titlecase }} {{user?.profile?.lastName | titlecase }}
+          </p>
+          <p>{{user?.profile?.bvn}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="rating">
+        <mat-star-rating [rating]="rating" [starCount]="starCount"
+                         (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="banking">
+        <p class="account">{{ user?.accountBalance | currency:'₦'}}</p>
+        <p>{{ user?.accountNumber}}/ Lendsqr MFB</p>
+      </div>
+    </div>
+  </div>
+  <div class="tabs h-shadow">
+    <mat-tab-group>
+      <mat-tab label="General Details">
+        <div class="tab-content mt-4 px-5">
+          <h4 class="mat-h4">Personal Information</h4>
+
+          <div class="row">
+            <div class="col-md-2">
+              <p class="title">FULL NAME</p>
+              <p class="content">{{user?.profile?.firstName}} {{user?.profile?.lastName}}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="title">PHONE NUMBER</p>
+              <p class="content">{{user?.profile?.phoneNumber}}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="title">EMAIL ADDRESS</p>
+              <p class="content"
+                 style="overflow: scroll; border-right: 2px solid #39CDCC">{{user?.email | lowercase}}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="title">BVN</p>
+              <p class="content">{{user?.profile?.bvn}}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="title">GENDER</p>
+              <p class="content">{{user?.profile?.gender}}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="title">MARITAL STATUS</p>
+              <p class="content">{{user?.profile?.status || 'N/A'}}</p>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-2">
+              <p class="title">CHILDREN</p>
+              <p class="content">{{user?.profile?.children ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-2">
+              <p class="title">TYPE OF RESIDENCE</p>
+              <p class="content">{{user?.profile?.residence ?? 'N/A' }}</p>
+            </div>
+          </div>
+        </div>
+        <p class="hr"></p>
+
+        <div class="tab-content mt-4 px-5">
+          <h4 class="mat-h4">Education and Employment</h4>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="title">LEVEL OF EDUCATION</p>
+              <p class="content">{{user?.education?.level ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">EMPLOYMENT STATUS</p>
+              <p class="content">{{user?.education?.employmentStatus ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">SECTOR OF EMPLOYMENT</p>
+              <p class="content">{{user?.education?.sector ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">DURATION OF EMPLOYMENT</p>
+              <p class="content">{{user?.education?.duration ?? 'N/A' }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <p class="title">OFFICE EMAIL</p>
+              <p class="content">{{user?.education?.officeEmail ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">MONTHLY INCOME</p>
+              <p class="content">{{user?.education?.monthlyIncome?.toString()?.replace(',', ' - ') ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">MONTHLY INCOME</p>
+              <p class="content">{{user?.education?.loanRepayment ?? 'N/A' }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content mt-4 px-5">
+          <h4 class="mat-h4">Socials</h4>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p class="title">TWITTER</p>
+              <p class="content">{{user?.socials?.twitter ?? 'N/A' }}</p>
+            </div>
+
+            <div class="col-md-3">
+              <p class="title">FACEBOOK</p>
+              <p class="content">{{user?.socials?.facebook ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">INSTAGRAM</p>
+              <p class="content">{{user?.socials?.instagram ?? 'N/A' }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 px-5 pb-5 mb-5">
+          <h4 class="mat-h4">Guarantor</h4>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p class="title">FULL NAME</p>
+              <p class="content">{{user?.guarantor?.firstName + ' ' + user?.guarantor?.lastName || 'N/A' }}</p>
+            </div>
+
+            <div class="col-md-3">
+              <p class="title">PHONE NUMBER</p>
+              <p class="content">{{user?.guarantor?.phoneNumber ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">ADDRESS</p>
+              <p class="content">{{user?.guarantor?.address ?? 'N/A' }}</p>
+            </div>
+            <div class="col-md-3">
+              <p class="title">RELATIONSHIP</p>
+              <p class="content">{{user?.guarantor?.relationship ?? 'N/A' }}</p>
+            </div>
+          </div>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Documents">
+        <div class="tab-content mt-4 p-3">
+          <h4 class="mat-h4">Documents</h4>
+          <app-coming-soon></app-coming-soon>
+        </div>
+      </mat-tab>
+      <mat-tab label="Bank Details">
+        <div class="tab-content mt-4 p-3">
+          <h4 class="mat-h4">Bank Details</h4>
+          <app-coming-soon></app-coming-soon>
+        </div>
+      </mat-tab>
+      <mat-tab label="Loans">
+        <div class="tab-content mt-4 p-3">
+          <h4 class="mat-h4">Loans</h4>
+          <app-coming-soon></app-coming-soon>
+        </div>
+      </mat-tab>
+      <mat-tab label="Savings">
+        <div class="tab-content mt-4 p-3">
+          <h4 class="mat-h4">Savings</h4>
+          <app-coming-soon></app-coming-soon>
+        </div>
+      </mat-tab>
+      <mat-tab label="App and System">
+        <div class="tab-content mt-4 p-3">
+          <h4 class="mat-h4">App and System</h4>
+          <app-coming-soon></app-coming-soon>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+</div>

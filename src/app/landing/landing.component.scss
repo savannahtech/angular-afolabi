@@ -1,0 +1,54 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 300px;
+  margin-top: 100px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.header {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.profile-pic {
+  width: 4rem;
+  height: 4rem;
+}
+
+#button-addon2 {
+  background-color: #39CDCC;
+  border: rgba(57, 205, 204, 0.4);
+}
+
+::ng-deep .mat-toolbar.header {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.active-list-item, .active-list-item:focus {
+  background-color: #39cdcc21;
+}
+
+.mdc-list-item:focus::before, .mdc-list-item:hover::before {
+opacity: 0;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line.active-list-item {
+  border-left: 5px solid #39CDCC;
+}

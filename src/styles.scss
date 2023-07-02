@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$md-lendsqrlight: (
+  50 : #e7f9f9,
+  100 : #c4f0f0,
+  200 : #9ce6e6,
+  300 : #74dcdb,
+  400 : #57d5d4,
+  500 : #39cdcc,
+  600 : #33c8c7,
+  700 : #545F7D,
+  800 : #24bab9,
+  900 : #17aead,
+  A100 : #befff4,
+  A200 : #81ffea,
+  A400 : #67ffe6,
+  A700 : #58ffe4,
+  contrast: (
+    50 : #545F7D,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #545F7D,
+    500 : #545F7D,
+    600 : #000000,
+    700 : #545F7D,
+    800 : #545F7D,
+    900 : #545F7D,
+    A100 : #545F7D,
+    A200 : #545F7D,
+    A400 : #545F7D,
+    A700 : #545F7D,
+  )
+);
+
+@include mat.core();
+
+//#545F7D
+
+$my-app-primary: mat.define-palette($md-lendsqrlight);
+$my-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$my-app-warn: mat.define-palette(mat.$red-palette);
+
+$my-app-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $my-app-primary,
+        accent: $my-app-accent,
+        warn: $my-app-warn,
+      ),
+    )
+);
+
+@include mat.all-component-themes($my-app-theme);
+
+.mat-body {
+  color: #333; /* Change this to your desired font color */
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  color: #545F7D;
+}
+
+.form-control:focus {
+  border-color: #39CDCC;
+  box-shadow: 0 0 0 0.25rem #39CDCC;
+}
+
+.mdc-data-table__cell {
+  color: #545F7D;
+}
+
+.mdc-data-table__header-cell, .mat-toolbar {
+  color: #545F7D;
+}
+
+.mat-drawer-container, .mdc-list-item__primary-text {
+  color: #545F7D !important;
+}
+
+.mat-mdc-outlined-button {
+  border-radius: 8px !important;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+
+::-webkit-scrollbar-track {
+  background: rgba(242, 244, 248, 0.5);
+  border-radius: 100vw;
+  margin-block: .5em ;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #39CDCC;
+  border-radius: 100vw;
+  border: 1px solid rgba(242, 244, 248, 0.5);
+}
+
+@supports (scrollbar-color: #39CDCC rgba(242, 244, 248, 0.5)) {
+  * {
+    scrollbar-color: #39CDCC rgba(242, 244, 248, 0.5);
+    scrollbar-width: thin;
+  }
+}

@@ -1,0 +1,59 @@
+.details {
+  padding: 2rem 2rem 5rem;
+  display: flex;
+}
+
+.persona {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid lightgray;
+  //max-width: 33%;
+  padding: 1rem;
+}
+
+.persona p.names, .banking p.account {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.rating {
+  padding: 2rem;
+  text-align: center;
+  //max-width: 33%;
+  border-right: 1px solid lightgray;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.banking {
+  //max-width: 33%;
+  padding: 2rem;
+  display: flex;
+  flex-start: start;
+  text-align: left;
+  flex-direction: column;
+}
+
+.tabs {
+  margin-top: -3rem;
+  overflow-x: hidden;
+  z-index: 30;
+}
+
+.mat-h4 {
+  font-weight: 500;
+}
+
+.h-shadow {
+  box-shadow: 0px 26px 1rem rgba(0, 0, 0, 0.15) !important
+}
+
+.title {
+  font-size: 12px;
+}
+.content {
+  font-size: 16px;
+  font-weight: 500;
+}
